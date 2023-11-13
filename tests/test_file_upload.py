@@ -1,11 +1,12 @@
 import os
 import pytest
-from ..file_upload import find_pdf_files 
+import shutil
+from file_upload import find_pdf_files 
 
 @pytest.fixture
 def setup_temporary_folder():
     # Create a temporary directory for testing
-    temp_dir = "temp_test_folder"
+    temp_dir = "tests/temp_test_folder"
     os.makedirs(temp_dir)
 
     # Create some dummy PDF files
@@ -17,7 +18,8 @@ def setup_temporary_folder():
     yield temp_dir  # Provide the temporary directory path to the test function
 
     # Teardown: Remove the temporary directory and its contents
-    os.rmdir(temp_dir)
+    # os.rmdir(temp_dir)
+    shutil.rmtree(temp_dir)
 
 def test_find_pdf_files(setup_temporary_folder):
     folder_path = setup_temporary_folder

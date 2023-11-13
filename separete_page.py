@@ -1,5 +1,5 @@
 import os
-import PyPDF2
+import pypdf
 
 def split_pdf(file, input_path, output_folder):
     #combine file and input path
@@ -11,12 +11,14 @@ def split_pdf(file, input_path, output_folder):
     # Open the PDF file
     with open(path, 'rb') as file:
         # Create a PdfReader object
-        pdf_reader = PyPDF2.PdfReader(file)
+        # pdf_reader = PyPDF2.PdfReader(file)
+        pdf_reader = pypdf.PdfReader(file)
 
         # Iterate through each page
         for page_number in range(len(pdf_reader.pages)):
             # Create a PdfWriter object
-            pdf_writer = PyPDF2.PdfWriter()
+            # pdf_writer = PyPDF2.PdfWriter()
+            pdf_writer = pypdf.PdfWriter()
 
             # Add the current page to the PdfWriter
             pdf_writer.add_page(pdf_reader.pages[page_number])
