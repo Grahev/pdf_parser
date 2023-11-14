@@ -1,9 +1,10 @@
 import pytest
-from area_extractor import hardware  # Replace 'your_module' with the actual module name where your function is defined
+from area_extractor import hardware  
 
 
 # Assume you have a sample PDF file for testing
-SAMPLE_PDF = "tests\\files\\T6099.pdf"
+# SAMPLE_PDF = "tests\\files\\T6099.pdf"
+SAMPLE_PDF = "tests\\files\\TR0943 combined.pdf"
 
 def test_hardware_successful_crop():
     # Assuming your sample PDF can be successfully cropped
