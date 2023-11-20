@@ -88,6 +88,29 @@ class Area:
         """
         bounding_box = (420, 400, 650, 594)
         return self._crop(bounding_box, show_image)
+    
+    def job_info_data(self):
+        job_section_table = self.job_info().extract_table()
+        
+        if job_section_table:
+            customer = job_section_table[1][0]
+            try:
+                door_no = job_section_table[-1][1].split(':')[-1].strip()
+            except:
+                door_no = job_section_table[1]
+            job_no = job_section_table[-1][0].split('.')[-1].strip()
+            rev = job_section_table[-1][-1].split('.')[-1].strip()
+            qty = job_section_table[2][0].split('\n')[-1].split(' ')[0]
+            job_info = {
+                'customer':customer if customer else None,
+                'job_no': job_no if job_no else None,
+                'door_no':door_no if door_no else None,
+                'qty': qty if qty else None,
+                'revision':rev if rev else None
+            }
+            return job_info
+        else:
+            None
 
     def _crop(self, area=None, show_image=False):
         """
